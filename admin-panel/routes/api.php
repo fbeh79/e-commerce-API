@@ -12,6 +12,7 @@ use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\FooterSectionController;
 use App\Http\Controllers\CopuonController;
 use App\Http\Controllers\TransActionsController;
+use App\Http\Controllers\UserController;
 
 Route::prefix('sliders')->group(function () {
     Route::post('/', [SliderController::class, 'store']);
@@ -47,3 +48,5 @@ Route::apiResource('Coupon', CopuonController::class);
 Route::get('/order', [OrderController::class, 'index']);
 Route::get('/Transaction', [TransActionsController::class, 'index']);
 Route::get('/transaction/chart', [TransActionsController::class, 'chart']);
+
+Route::apiResource('Users',UserController::class);
