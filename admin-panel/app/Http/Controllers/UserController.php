@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UsersReasource;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends ApiController
 {
@@ -13,7 +15,7 @@ class UserController extends ApiController
         $users = User::latest()->paginate(3);
 
         return $this->SuccessResponse([
-            'users' => UsersReasource::collection($users),
+            'users' => UserResource::collection($users),
             'links' => $users->links(),
             'meta' => [
                 'current_page' => $users->currentPage(),
@@ -23,4 +25,44 @@ class UserController extends ApiController
             ]
         ]);
     }
+    public function show(User $user){
+        return $this->SuccessResponse(new UserResource($user));
+    }
+    public function store(Request $request){
+        $valid=Validator::make($request->all(),[
+            'name'=>'required|string',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|string',
+            'cell_phone'=>'required',
+        ]);
+        if($valid->fails()){
+            return $this->ErrorResponse($valid->errors());
+        }
+        $user=User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'cell_phone'=>$request->cell_phone,
+        ]);
+        return $this->SuccessResponse(new UserResource($user),'User has been created');
+    }
+    public function update(Request $request,User $user){
+        $valid=Validator::make($request->all(),[
+            'name'=>'required|string',
+            'email'=>'required|email',
+            'password'=>'required|string',
+            'cell_phone'=>'required',
+        ]);
+        if($valid->fails()){
+            return $this->ErrorResponse($valid->errors());
+        }
+        $user->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=> $request->has($request->password)? Hash::make($request->password):$user->password,
+            'cell_phone'=>$request->cell_phone,
+        ]);
+        return $this->SuccessResponse(new UserResource($user),'User has been updated');
+    }
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -13,6 +14,9 @@ use App\Http\Controllers\FooterSectionController;
 use App\Http\Controllers\CopuonController;
 use App\Http\Controllers\TransActionsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+
+Route::middleware('sanctum')->group(function () {
 
 Route::prefix('sliders')->group(function () {
     Route::post('/', [SliderController::class, 'store']);
@@ -49,4 +53,8 @@ Route::get('/order', [OrderController::class, 'index']);
 Route::get('/Transaction', [TransActionsController::class, 'index']);
 Route::get('/transaction/chart', [TransActionsController::class, 'chart']);
 
-Route::apiResource('Users',UserController::class);
+Route::apiResource('users',UserController::class);
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+});
+Route::post('/auth/login', [AuthController::class, 'login']);
+Route::apiResource('roles', RoleController::class);

@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable,HasApiTokens;
-protected   $table='users';
+protected  $table='users';
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +22,7 @@ protected   $table='users';
         'name',
         'email',
         'password',
+        'cell_phone'
     ];
 
     /**
