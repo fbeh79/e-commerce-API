@@ -16,7 +16,7 @@ use App\Http\Controllers\TransActionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 
-Route::middleware('sanctum')->group(function () {
+//Route::middleware('sanctum')->group(function () {
 
 Route::prefix('sliders')->group(function () {
     Route::post('/', [SliderController::class, 'store']);
@@ -55,6 +55,6 @@ Route::get('/transaction/chart', [TransActionsController::class, 'chart']);
 
 Route::apiResource('users',UserController::class);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
-});
+
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::apiResource('roles', RoleController::class);

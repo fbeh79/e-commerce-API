@@ -47,4 +47,8 @@ protected  $table='users';
             'password' => 'hashed',
         ];
     }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 }
