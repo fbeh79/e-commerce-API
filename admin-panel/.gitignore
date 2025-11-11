@@ -6,7 +6,6 @@
 .phpactor.json
 .phpunit.result.cache
 /.fleet
-/.idea
 /.nova
 /.phpunit.cache
 /.vscode
@@ -22,3 +21,5 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+# Ignore IDE files
+.idea/
