@@ -44,7 +44,7 @@ Route::prefix('Footer')->group(function () {
 Route::put('/{Footer_Section}',[FooterSectionController::class, 'update']);
 Route::put('/',[FooterSectionController::class, 'index']);
 });
-Route::apiResource('categories', CategoryController::class)->middleware('can:isAdmin');
+Route::apiResource('categories', CategoryController::class);
 Route::apiResource('product',ProductController::class);
 
 Route::apiResource('Coupon', CopuonController::class);
