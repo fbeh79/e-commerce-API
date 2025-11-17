@@ -36,7 +36,7 @@ class AuthController extends ApiController
 
             $sender = "2000660110";
             $receptor = "09222383670";
-            $message = "کد ورودمشمدعلی $otp";
+            $message = "کد ورود $otp";
             $api = new  KavenegarApi("7342314C6B366A644A6C723439567439626B4B2B656C46536A78556C4333686A366A466B785752425466553D");
             $api->Send($sender, $receptor, $message);
 
