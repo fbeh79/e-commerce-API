@@ -1,52 +1,49 @@
-### 🧑‍🍳 Public Restaurant Services
-- Display dynamic pages such as *About Us* and *Contact Us*
-- List food categories and menu items
-- Manage products (meals) including:
-  - Images
-  - Start and end dates for promotions
-  - Regular and discount prices
-- Provide a “favorites” list (wishlist) for users
-- Filter, search, and paginate menu items
+# E-Commerce API
+
+A complete e-commerce web service with an admin panel and advanced features for managing products, orders, users, and payments. Built with Laravel, this project includes OTP authentication, authorization, Unit & Feature testing, and API documentation.
 
 ---
 
-### 🛠️ Admin Panel (Backend Services)
-- Full CRUD operations for menu items and categories
-- Manage users and roles (Admin, Customer, Staff)
-- Add and manage discount codes and offers
-- View and manage orders and reservations
-- Generate reports and visual charts for restaurant analytics
-- Manage static pages such as “About Us” and “Contact Us”
+## 🎯 Features
+
+### User
+- OTP Authentication (SMS code login)
+- Role-based Access Control (Authorization)
+- User Profile: personal information, addresses, orders, transactions, favorites
+- View products and categories
+- Add products to favorites
+- Apply discount codes and make online payments
+
+### Shop
+- Product management including images, price, discount, and sale period
+- Dynamic menu and slider management
+- Static pages: About Us, Contact Us, Footer
+- Product search and filter
+
+### Admin Panel
+- Full management of products and categories
+- Order and transaction management
+- Discount code management
+- View reports and sales statistics
 
 ---
 
-### 🔐 Authentication & Authorization
-- User login and registration using **OTP (SMS code)** or email/password
-- Role-based access control (Admin, User)
-- User profile management:
-  - Personal info
-  - Addresses
-  - Reservations
-  - Transactions
-  - Favorites list
+## ⚙️ Installation
 
----
+```bash
+# Clone the repository
+git clone https://github.com/fbeh79/e-commerce-API.git
+cd e-commerce-API
 
-### 💳 Payment Integration
-- Integration with payment gateways (e.g., **Zibal**, **Stripe**, etc.)
-- Create and verify transactions
-- Automatically update order/reservation status after successful payment
+# Install dependencies
+composer install
 
----
-#Test
--Feature 
-_Unit
---------
-### 🧩 API Response Structure
-All responses follow a consistent format:
-```json
-{
-  "status": "success",
-  "data": { ... },
-  "message": "Operation successful"
-}
+# Setup environment file
+cp .env.example .env
+php artisan key:generate
+
+# Migrate database and seed
+php artisan migrate --seed
+
+# Run local server
+php artisan serve
